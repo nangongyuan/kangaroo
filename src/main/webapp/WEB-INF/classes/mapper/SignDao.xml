@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.SignDao">
+
+
+    <select id="listSignUserByAid" resultType="com.yuan.dto.UserDTO">
+        SELECT user.id,name,sex,area,headpic FROM user,sign where sign.uid = user.id and sign.aid = #{aid}
+    </select>
+
+    <insert id="saveSignDO" parameterType="SignDO">
+        insert into sign (id,aid,uid,addtime,remark) values (#{id},#{aid},#{uid},#{addtime},#{remark})
+    </insert>
+
+    <select id="listSignUserByAidTime" resultType="com.yuan.dto.UserDTO">
+        SELECT user.id,name,sex,area,headpic FROM user,sign where sign.uid = user.id and sign.aid = #{aid}
+        and unix_timestamp(addtime)>#{s}
+    </select>
+
+    <select id="getSign" resultType="Integer">
+        select id from sign where aid=#{aid} and uid = #{uid}
+    </select>
+</mapper>

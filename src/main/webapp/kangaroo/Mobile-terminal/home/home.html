@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../home/css/home.css">
+
+<div class="home-sort">
+    推荐
+</div>
+
+<div id="home-content">
+    <!-- body 顶部加上如下代码 下拉刷新 -->
+    <div class="weui-pull-to-refresh__layer home-refresh__layer">
+        <div class='weui-pull-to-refresh__arrow'></div>
+        <div class='weui-pull-to-refresh__preloader'></div>
+        <div class="down">下拉刷新</div>
+        <div class="up">释放刷新</div>
+        <div class="refresh">正在刷新</div>
+    </div>
+
+    <ul>
+
+    </ul>
+
+
+    <div class="weui-loadmore" id="icon_load" style="margin-top:0;display:none">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">
+            <font style="color:rgb(165, 165, 165)">正在加载</font>
+        </span>
+    </div>
+
+    <div class="weui-loadmore weui-loadmore_line" style="display:none" id="no_data">
+        <span class="weui-loadmore__tips">无更多活动</span>
+    </div>
+
+    <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot" id="have_data">
+        <span class="weui-loadmore__tips"></span>
+    </div>
+
+</div>
+
+
+<script src="../home/js/home.js"></script>
+
+<script>
+    $('#home-content').pullToRefresh();
+
+    $('#home-content').on("pull-to-refresh", function () {
+        /* 当下拉刷新触发的时候执行的回调 */
+        $("#home-content ul").html("");
+        $("#no_data").css("display", "none");
+        $("#have_data").css("display", "block");
+        pagenum = 1;
+        t = true;
+        ajax_data_home();
+        $('#home-content').pullToRefreshDone();
+    });
+</script>

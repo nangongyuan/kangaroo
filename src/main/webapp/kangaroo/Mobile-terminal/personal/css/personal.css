@@ -1,0 +1,404 @@
+#PeisonalBody {
+    margin: 0;
+    padding: 0;
+    background: rgb(236, 236, 236);
+}
+
+.personal-content {
+    overflow-y: scroll;
+    position: absolute;
+    z-index: 2;
+}
+
+.information {
+    color: rgb(151, 151, 151);
+}
+
+.myModal {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 60%;
+    /*这个比例可以自己按需调节*/
+    overflow: visible;
+    bottom: inherit;
+    right: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    border-top: 1px solid rgb(177, 177, 177);
+    z-index: 1999;
+}
+
+/* 兴趣标签 */
+
+ul li {
+    list-style: none;
+}
+
+.changeone {
+    position: relative;
+    top: 30px;
+    left: 5%;
+    width: 90%;
+}
+
+.changeone ul {
+    height: 44px;
+}
+
+.changeone div {
+    flex: 1;
+    padding: 2px;
+    margin-left: 8px;
+    width: auto;
+    float: left;
+}
+
+.changeone div span {
+    padding: 10px 12px;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+/* 选择头像 */
+
+.my_box {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: .6s;
+}
+
+.my_box:hover {
+    animation: my_box 0.5s forwards;
+    transition: .5s;
+}
+
+.my_box img {
+    width: 100%;
+}
+
+#Avatarbody {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#Avatarbody ul {
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    margin: 10px auto;
+}
+
+#Avatarbody ul li {
+    display: block;
+    list-style: none;
+    width: 47px;
+    height: 47px;
+    float: left;
+    border-radius: 15%;
+    border: 1px solid #ccc;
+    margin: 5px 5px;
+    margin-bottom: 20px;
+    transition: .6s;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#Avatarbody ul li img {
+    width: 100%;
+    height: 100%;
+}
+
+.bt_box {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.bt_box .gb {
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    border-radius: 8px;
+    background: #f3f3f3;
+    color: #444;
+    line-height: 35px;
+}
+
+.bt_box .queren {
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    border-radius: 8px;
+    background: #4B8BF5;
+    color: #fff;
+    line-height: 35px;
+}
+
+/* 历史记录 */
+
+#personal-history-div {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 102%;
+    opacity: 1;
+    background: #ffffff;
+    display: none;
+}
+
+.personal-history-head {
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    background: #e8e8e8;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    color: rgb(252, 183, 72);
+    line-height: 150px;
+    font-size: 1.5em;
+}
+
+.personal-history-back {
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    position: fixed;
+    top: 5px;
+}
+
+.personal-history-content {
+    position: fixed !important;
+    top: 150px;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+/* 预订记录 */
+
+#personal-reserve-div {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 102%;
+    opacity: 1;
+    background: #ffffff;
+    display: none;
+}
+
+.personal-reserve-head {
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    background: #e8e8e8;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    color: rgb(252, 183, 72);
+    line-height: 150px;
+    font-size: 1.5em;
+}
+
+.personal-reserve-back {
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    position: fixed;
+    top: 5px;
+}
+
+.personal-reserve-content {
+    position: fixed !important;
+    top: 150px;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+/* 我发布的活动 */
+
+#personal-publish-div {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 102%;
+    opacity: 1;
+    background: #ffffff;
+    display: none;
+}
+
+.personal-publish-back {
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    position: fixed;
+    top: 5px;
+}
+
+.weui-grids {
+    position: fixed;
+    top: 125px;
+    width: 100%;
+}
+
+.weui-grid {
+    /* width: 50% !important; */
+    z-index: 4;
+    background: #FFF;
+    height: 95px;
+}
+
+.publish-head {
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    background: #ffffff;
+    height: 125px;
+    width: 100%;
+    text-align: center;
+    color: rgb(252, 183, 72);
+    line-height: 125px;
+    font-size: 1.5em;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.publish-content {
+    z-index: 0;
+    position: relative;
+    /* top: 220px; */
+    width: 100%;
+}
+
+.personal-publish-content {
+    position: fixed !important;
+    overflow-y: scroll;
+}
+
+.slide {
+    height: 100%;
+    width: 100%;
+    background: #FFF;
+    z-index: 0;
+}
+
+.publish-content .weui-cells {
+    position: relative;
+    top: 200px;
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.fp-tableCell {
+    vertical-align: top;
+}
+
+.fp-scrollable {
+    overflow-y: scroll;
+}
+
+.fp-scroller {
+    overflow-y: scroll;
+}
+
+/* 修改popub */
+
+.update-popup-img-div {
+    height: 200px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.weui-picker-modal .picker-items {
+    top: 30px;
+}
+
+#update-datetime-picker-s,
+#update-datetime-picker-e {
+    border: 0;
+    width: 138px;
+    height: 40px;
+}
+
+#update-datetime-picker-e {
+    position: absolute;
+    right: 15px;
+}
+
+#update-datetime-picker-e:disabled {
+    background: #FFF;
+}
+
+#update-city-picker {
+    width: 280px;
+    text-align: right;
+    border: 0;
+    height: 40px;
+}
+
+.update-activity-max {
+    text-align: right;
+    border: 0;
+    height: 40px;    
+}
+
+.update-activity-password {
+    text-align: right;
+    border: 0;
+}
+
+.update-type-picker {
+    text-align: right;
+    border: 0;
+    height: 40px;
+}
+
+.update-type-ul-id>li {
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+@media screen and (min-height:1024px) {
+    .update-popup-img-div {
+        height: 400px !important;
+    }
+}
+
+@media screen and (min-height:1300px) {
+    .update-popup-img-div {
+        height: 400px !important;
+    }
+}
+
+.personal-history-content a{
+    font-size: 10px;
+}
+
+.personal-reserve-content a{
+    font-size: 10px;
+}
+
+.personal-publish-content a{
+    font-size: 10px;
+}

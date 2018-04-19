@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.FriendDao">
+    <insert id="saveFriend" parameterType="FriendDO">
+        insert into friend(uid1, uid2,friendremark,recentlychat,remark)
+        VALUES
+        (#{uid1},#{uid2},#{friendremark},#{recentlychat},#{remark})
+    </insert>
+    <select id="listFriendDTOById" resultType="com.yuan.dto.FriendDTO">
+        SELECT user.id,name,sex,friendremark,headpic  FROM user,friend where
+         friend.uid1=#{id} and user.id=friend.uid2
+         ORDER BY recentlychat desc
+    </select>
+    <update id="updateFriend" parameterType="FriendDO">
+        UPDATE friend set friendremark=#{friendremark},recentlychat=#{recentlychat},remark=#{remark}
+        where uid1=#{uid1} and uid2=#{uid2}
+    </update>
+    <delete id="removeFriend">
+        delete from friend where uid1=#{uid1} and uid2=#{uid2}
+    </delete>
+
+    <update id="updatRecentlychat">
+        UPDATE friend set recentlychat=sysdate()
+        where (uid1=#{uid1} and uid2=#{uid2}) or (uid1=#{uid2} and uid2=#{uid1})
+    </update>
+
+    <select id="getFriendInfo" resultType="com.yuan.dto.FriendInfoDTO">
+        SELECT user.id,name,sex,area,phone,friendremark,headpic FROM user,friend where uid1=#{uid1} and uid2=#{uid2} and user.id=#{uid2}
+    </select>
+
+</mapper>

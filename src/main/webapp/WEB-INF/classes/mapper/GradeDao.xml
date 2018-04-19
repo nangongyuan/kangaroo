@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.GradeDao">
+    <insert id="saveGrade" parameterType="GradeDO">
+        insert into grade(aid,sum,number,remark)
+        VALUES
+        (#{aid},#{sum},#{number},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <update id="addGrade">
+        update grade set sum=sum+#{num},number=number+1 where aid=#{aid}
+    </update>
+
+    <select id="getGradeDOByAid" resultType="GradeDO">
+        select id,aid,sum,number,remark from grade where aid = #{aid}
+    </select>
+</mapper>

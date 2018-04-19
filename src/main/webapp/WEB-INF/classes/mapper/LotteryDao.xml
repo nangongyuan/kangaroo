@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.LotteryDao">
+    <insert id="saveLottery" parameterType="LotteryDO">
+        insert into lottery(aid, name,prizename,number,remark)
+        VALUES
+        (#{aid},#{name},#{prizename},#{number},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="saveLotteryRecord" parameterType="LotteryRecordDO">
+        insert into lottery_record(lotteryid, uid,remark)
+        VALUES
+        (#{lotteryid},#{uid},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <select id="listWinningUser" resultType="com.yuan.dto.UserDTO">
+        SELECT user.id,name,sex,area,headpic FROM user,lottery_record where lotteryid=#{lotteryid} and uid=user.id
+    </select>
+
+    <select id="listLotteryDOByAid" resultType="LotteryDO">
+        SELECT id,aid,name,prizename,number,addtime,remark FROM lottery where aid = #{aid}
+    </select>
+
+</mapper>

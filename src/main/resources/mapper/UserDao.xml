@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.UserDao">
+    <select id="listUserDO" resultType="UserDO">
+        SELECT id,type,name,password,salt,sex,area,phone,headpic,locked,create_time,remark FROM user where 1!=2
+        <if test="map.id!=null">and id=#{map.id}</if>
+        <if test="map.name!=null">and name=#{map.name}</if>
+    </select>
+
+    <insert id="saveUser" parameterType="UserDO">
+        insert into user(name,type,password,salt,sex,area,phone,headpic,locked,remark)
+        VALUES
+        (#{name},#{type},#{password},#{salt},#{sex},#{area},#{phone},#{headpic},#{locked},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <update id="updateUser" parameterType="UserDO">
+        update user set sex=#{sex}
+        <if test="area!=null">, area=#{area}</if>
+        <if test="type!=null">, type=#{type}</if>
+        <if test="name!=null">, name=#{name}</if>
+        <if test="phone!=null">, phone=#{phone}</if>
+        <if test="locked!=null">, locked=#{locked}</if>
+        <if test="headpic!=null">, headpic=#{headpic}</if>
+        <if test="remark!=null">, remark=#{remark}</if>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete from user where id=#{id}
+    </delete>
+
+    <select id="listActivitySubscribleUsers" resultType="com.yuan.dto.UserDTO">
+        SELECT id,name,sex,area,headpic FROM user,subscrible where aid=#{0} and uid=userDO.id
+    </select>
+
+    <select id="searchUser" resultType="com.yuan.dto.UserDTO">
+        SELECT id,name,sex,area,headpic FROM user where id!=#{uid} and
+        (name like "%"#{wd}"%" or (length(#{wd})>4 and concat(id,'') like #{wd}"%"))
+    </select>
+
+    <select id="listUserDTO" resultType="com.yuan.dto.UserDTO">
+        SELECT id,name,sex,area,headpic FROM user where 1!=2
+        <if test="map.id!=null">and id=#{map.id}</if>
+        <if test="map.name!=null">and name=#{map.name}</if>
+    </select>
+
+    <select id="listActivitySubscrible" resultType="com.yuan.dto.UserDTO">
+        SELECT user.id,name,sex,area,headpic FROM user,subscrible where 1!=2 and
+        aid=#{aid} and uid=user.id
+    </select>
+
+    <select id="getUserDetailDTO" resultType="com.yuan.dto.UserDetailDTO">
+        SELECT id,type,name,sex,area,phone,headpic,locked,create_time,remark FROM user where id=#{uid}
+    </select>
+
+</mapper>

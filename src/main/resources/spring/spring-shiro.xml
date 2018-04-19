@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <description>Shiro安全配置</description>
+
+    <!-- UsernameRealm -->
+    <bean id="userNameRealm" class="com.yuan.shiro.realm.UserNameRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property> <!-- 加密算法的名称 -->
+                <property name="hashIterations" value="1"></property> <!-- 配置加密的次数 -->
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 会话DAO -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+
+    <!-- 会话验证调度器 -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+        <property name="sessionManager" ref="sessionManager"/>
+        <!-- 设置调度时间间隔，单位毫秒，默认就是1小时  -->
+        <property name="interval" value="300000"/>
+    </bean>
+
+    <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator"
+          class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话Cookie模板，使用sid存储sessionid -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="path" value="/"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="180000"/>
+    </bean>
+
+    <!-- 配置shiro session 的一个管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionValidationInterval" value="1800000"/>
+        <property name="sessionDAO" ref="sessionDAO"></property>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30 days -->
+    </bean>
+
+    <!-- rememberMe管理器  -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <!-- 缓存管理 内存缓存不支持集群-->
+    <bean id="mycacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userNameRealm"/>
+        <property name="cacheManager" ref="mycacheManager"></property>
+        <property name="sessionManager" ref="sessionManager" />
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <bean id="aotuLoginAndRedirectFilter" class="com.yuan.shiro.AotuLoginAndRedirectFilter"/>
+    <!-- Shiro过滤器 -->
+    <bean id="shiroFilter" class="com.yuan.shiro.ShiroPermissionFactory">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份认证失败，则跳转到登录页面的配置 -->
+        <!--<property name="loginUrl" value="/kangaroo/signin-reg/login.html"/>-->
+        <!-- 登录成功跳转页面的配置 -->
+        <!--<property name="successUrl" value="/kangaroo/frame/frame.html"/>-->
+        <!-- 权限认证失败，则跳转到指定页面 -->
+        <!--<property name="unauthorizedUrl" value="/norole.jsp"/>-->
+        <!-- Shiro连接约束配置,即过滤链的定义 -->
+        <property name="filters">
+            <map>
+                <entry key="aotuLoginAndRedirectFilter" value-ref="aotuLoginAndRedirectFilter"/>
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /admins/login = anon
+                /admins/verification = anon
+                /kangaroo/Mobile-terminal/frame/frame.html = aotuLoginAndRedirectFilter
+                <!--/** = anon-->
+                <!--/userDO/login = anon-->
+                <!--/** = authc-->
+            </value>
+        </property>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.RedPacketDao">
+    <insert id="saveRedPacket" parameterType="RedPacketDO">
+        insert into redpacket(aid,rptitle,money,number,random,remark)
+        VALUES
+        (#{aid},#{rptitle},#{money},#{number},#{random},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="saveRedPacketRecord" parameterType="RedPacketRecordDO">
+        insert into redpacket_record(rpid,uid,money,remark)
+        VALUES
+        (#{rpid},#{uid},#{money},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <select id="listRedPacketDOByAid" resultType="RedPacketDO">
+        select id,aid,rptitle,money,number,random,addtime,remark from redpacket where aid = #{aid};
+    </select>
+
+    <select id="listRedPacketRecordByRpid" resultType="RedPacketRecordDO">
+        select redpacket_record.id,rpid,uid,money,addtime,redpacket_record.remark,name from redpacket_record,user where rpid = #{rpid} and uid=user.id;
+    </select>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.ActivityTypeDao">
+    <select id="listActivityTypeDO" resultType="ActivityTypeDO">
+        SELECT id,name FROM activity_type where 1!=2
+        <if test="map.id!=null">and id=#{map.id}</if>
+    </select>
+    <insert id="saveActivityType" parameterType="ActivityTypeDO">
+        insert into activity_type(name)
+        VALUES
+        (#{name})
+    </insert>
+    <delete id="deleteActivityType">
+        delete from activity_type where id=#{id}
+    </delete>
+    <update id="updateActivityType" parameterType="ActivityTypeDO">
+        update activity_type set name=#{name} where id=#{id}
+    </update>
+    <select id="listUserActivityType" resultType="ActivityTypeDO">
+        SELECT activity_type.id,activity_type.name from activity_type,user_interest where user_interest.uid=#{uid}
+        AND user_interest.typeid = activity_type.id
+    </select>
+    <delete id="deleteUserActivityType">
+        delete from user_interest where uid=#{uid}
+    </delete>
+    <insert id="saveUserActivityType">
+        insert into user_interest(uid, typeid)
+        VALUES
+        (#{0},#{1})
+    </insert>
+</mapper>

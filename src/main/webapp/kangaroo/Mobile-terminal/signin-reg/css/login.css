@@ -1,0 +1,256 @@
+body {
+    margin: 0;
+    font-size: 17px;
+    background: #000;    
+}
+
+::-webkit-scrollbar{
+    width:0px !important;
+}
+
+.container-fluid {
+    margin-top: 70%;
+}
+
+#slide1{
+    margin-top: 30%;    
+}
+
+#slide2{
+    margin-top: 10%;    
+}
+
+.row-magin-top {
+    margin-top: 3%;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #fff;
+}
+
+#registered,#perfect{
+    background: rgb(233, 233, 233);
+}
+
+#log input::-webkit-input-placeholder {
+    color: #FFF;
+}
+#log input:-moz-placeholder {
+    color: #FFF;
+}
+#log input:-ms-input-placeholder {
+    color: #FFF;
+}
+
+#log input,#log input:hover,#focus{
+    outline: none;      
+    border:none;
+    border-bottom:1px solid #FFF;
+    border-top-right-radius: 0px; 
+    border-top-left-radius: 0px; 
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px; 
+    color: #FFF;
+    width: 100%;
+    height: 45px;
+}
+
+#log input::-webkit-input-placeholder {
+    font-size: 17px
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active{
+    background-color: #fff;
+    border-color: #fff;    
+}
+
+#Message-Model button{
+    border-top-right-radius: 0px; 
+    border-top-left-radius: 0px; 
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px; 
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+
+    color: #FFF;
+    font-size: 17px;
+
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+
+    color: #FFF;
+    font-size: 157px;
+
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+
+    color: #FFF;
+    font-size: 17px;
+
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+
+    color: #FFF;
+    font-size: 17px;
+
+}
+
+#fullpage{
+    background:url(../img/1.png);  /* 1.png */
+    background-size: cover;
+}
+
+.myModal{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 60%;
+    /*这个比例可以自己按需调节*/
+    overflow: visible;
+    bottom: inherit;
+    right: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    z-index: 1999;
+}
+
+#pass{
+    margin: 10px;
+    color: #FFF;
+    border: 0px;
+    border-top-right-radius: 7px; 
+    border-top-left-radius: 7px; 
+    border-bottom-right-radius:7px;
+    border-bottom-left-radius:7px; 
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.login-Heading{
+    width: 100%;
+    height: 45px;
+    background: rgb(53, 52, 57);
+    line-height:45px; 
+    text-align: center;
+    font-size:17px;
+    color: #FFF;
+}
+
+#back-icon{
+    position: absolute;
+    left: 0px;
+    top:4px;
+    margin: 2px;
+}
+
+
+.my_box {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: .6s;
+}
+
+.my_box:hover {
+    animation: my_box 0.5s forwards;
+    transition: .5s;
+}
+
+.my_box img {
+    width: 100%;
+}
+
+#Avatarbody{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#Avatarbody ul {
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    margin: 10px auto;
+}
+
+#Avatarbody ul li{
+    display: block;
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 15%;
+    border: 1px solid #ccc;
+    margin: 5px 5px;
+    margin-bottom: 20px;
+    transition: .6s;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#Avatarbody ul li img {
+    width: 100%;
+}
+
+.bt_box {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.bt_box .gb {
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    border-radius: 8px;
+    background: #f3f3f3;
+    color: #444;
+    line-height: 35px;
+}
+
+.bt_box .queren {
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    border-radius: 8px;
+    background: #4B8BF5;
+    color: #fff;
+    line-height: 35px;
+}
+
+.loading{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: #FFF;    
+}
+
+svg path,
+svg rect {
+  fill: #FF6700;
+}

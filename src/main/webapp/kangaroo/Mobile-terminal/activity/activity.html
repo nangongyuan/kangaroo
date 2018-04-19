@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="../activity/css/activity.css">
+
+<!-- 分类框 -->
+<div class="activity-sort">
+    <span class="sort-title">活动</span>
+    <div class="sort-div swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id='aa'>
+                <span id="0" class="sort-lable" onclick="select_sort(this)" style="color:rgb(250, 186, 90)">全部</span>
+            </div>
+            <div class="swiper-slide" id='bb'>
+
+            </div>
+            <div class="swiper-slide" id='cc'>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- 搜索框 -->
+<div class="weui-search-bar" id="activity-searchBar">
+    <form class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText">
+            <i class="weui-icon-search"></i>
+            <span>搜索</span>
+        </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+</div>
+
+<!-- 内容块 -->
+<div class="container-fluid activity-content" id="activity-content">
+
+    <!-- body 顶部加上如下代码 下拉刷新 -->
+    <div class="weui-pull-to-refresh__layer activity-refresh__layer">
+        <div class='weui-pull-to-refresh__arrow'></div>
+        <div class='weui-pull-to-refresh__preloader'></div>
+        <div class="down">下拉刷新</div>
+        <div class="up">释放刷新</div>
+        <div class="refresh">正在刷新</div>
+    </div>
+
+    <ul>
+
+    </ul>
+
+
+    <!-- weui底部提示 -->
+    <div style="position:relative;top:100%;">
+        <div class="weui-loadmore weui-loadmore_line weui-loadmore_dot" id="have-data">
+            <span class="weui-loadmore__tips"></span>
+        </div>
+        <div class="weui-loadmore" id="icon-load" style="display:none;position:relative">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">
+                <font style="color:rgb(165, 165, 165)">正在加载</font>
+            </span>
+        </div>
+
+        <div class="weui-loadmore weui-loadmore_line" style="display:none;" id="no-data">
+            <span class="weui-loadmore__tips" style="margin-top:40px">无更多活动</span>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="../activity/js/activity.js"></script>
+
+<script>
+    $('#activity-content').pullToRefresh();
+
+    $('#activity-content').on("pull-to-refresh", function () {
+        /* 当下拉刷新触发的时候执行的回调 */
+        $("#have-data").css("display", "block");
+        $("#no-data").css("display", "none");
+        $("#0").trigger("click");
+        $('#activity-content').pullToRefreshDone();
+    });
+
+    var activity_type_swiper = new Swiper('.sort-div', {
+        width: 900,
+        freeMode: true,
+        freeModeMomentum: false,
+    })
+</script>

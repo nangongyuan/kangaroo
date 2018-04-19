@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* ::-webkit-scrollbar{width:0px} */
+
+.loading path,
+.loading rect {
+    fill: rgb(252, 183, 72);
+}
+
+.loading {
+    position: relative;
+    top: 40%;
+}
+
+.loading-div {
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    text-align: center;
+    position: absolute;
+}
+
+.create-activity-content {
+    display: none;
+}
+
+.create-activity-header {
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+    background: #FFF;
+    border-bottom: 2px solid rgb(238, 238, 238);
+    height: 45px;
+}
+
+.create-activity-img {
+    position: relative;
+    top: 48px;
+    height: 200px;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.create-activity-information {
+    border-top: 1px solid rgb(247, 247, 247);
+    position: relative;
+    top: 50px;
+    height: 50px;
+}
+
+.create-activity-input {
+    position: relative;
+    border: 0;
+    outline: none;
+    height: 30px;
+    width: 150px;
+    margin-left: 20px;
+}
+
+.create-activity-font {
+    position: relative;
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: Hiragino Sans GB
+}
+
+/* input默认文字样式 */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: rgb(196, 196, 196);
+    font-size: 17px;
+}
+
+.create-date {
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+}
+
+/* 活动模态框居中 */
+.mymodal {
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    min-width: 60%;
+    /*这个比例可以自己按需调节*/
+    overflow: visible;
+    bottom: inherit;
+    right: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 活动类型li样式 */
+.modal-body ul li{
+    width: 100%;
+    height: 40px;
+    list-style: none;
+    font-size: 16px;
+    line-height:40px
+}
+
+.modal-body ul li:hover{
+    background: #e0e0e0;
+    
+}
+
+.weui-picker-modal.weui-picker-modal-visible{
+    height: 200px;
+}
+
+#create-end-date-time:disabled {
+    background: #FFF;
+}
+
+#create-start-date-time{
+    float: left;
+    border: 0;
+}
+
+#create-end-date-time{
+    position: absolute;
+    right: 25px;
+    text-align: right;
+    border: 0;    
+}

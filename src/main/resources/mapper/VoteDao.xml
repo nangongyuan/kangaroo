@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.VoteDao">
+    <insert id="saveVote" parameterType="VoteDO">
+        insert into vote(aid, name,multiselect,remark)
+        VALUES
+        (#{aid},#{name},#{multiselect},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="saveVoteGroup" parameterType="VoteGroup">
+        insert into vote_group(voteid, name,number,remark)
+        VALUES
+        (#{voteid},#{name},#{number},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="saveVoteRecord" parameterType="VoteRecord">
+        insert into vote_record(groupid, uid,remark)
+        VALUES
+        (#{groupid},#{uid},#{remark})
+    </insert>
+
+    <update id="addVoteGroupNum">
+        update vote_group set number=number+1 where id=#{id}
+    </update>
+
+    <select id="listVoteDOByAid" resultType="VoteDO">
+        select id,aid,name,multiselect,addtime,remark from vote where aid=#{aid}
+    </select>
+
+    <select id="listVoteGroupByVid" resultType="VoteGroup">
+        select id,voteid,name,number,remark from vote_group where voteid=#{voteid}
+    </select>
+
+    <select id="listVoteRecordByGid" resultType="VoteRecord">
+        select vote_record.id,groupid,uid,name,addtime,vote_record.remark from  vote_record,user where uid=user.id and groupid=#{groupid}
+    </select>
+
+    <select id="getVotedGroup" resultType="Integer">
+        select vote_group.id from vote_record,vote_group where vote_group.id = vote_record.groupid
+        and uid = #{uid} and vote_group.voteid = #{voteid}
+    </select>
+    <select id="getVoteDOById" resultType="VoteDO">
+        select id,aid,name,multiselect,addtime,remark from vote where id=#{id}
+    </select>
+</mapper>

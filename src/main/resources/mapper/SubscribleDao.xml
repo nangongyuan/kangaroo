@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.SubscribleDao">
+
+    <insert id="saveSubscrible">
+        insert into subscrible(aid,uid,valid)
+        VALUES
+        (#{0},#{1},#{2})
+    </insert>
+
+
+    <select id="getValidByAidUid" resultType="Integer">
+        SELECT valid from subscrible where aid=#{aid} and uid=#{uid} and valid=1
+    </select>
+
+    <select id="listSubscribleByAid" resultType="com.yuan.dto.UserDTO">
+        SELECT user.id,name,sex,area,headpic FROM user,subscrible where
+        subscrible.aid = #{aid} and subscrible.uid = user.id and valid=1
+    </select>
+
+    <update id="updateSubscribleValid">
+        update subscrible set valid = #{valid} where aid=#{aid} and uid=#{uid}
+    </update>
+</mapper>

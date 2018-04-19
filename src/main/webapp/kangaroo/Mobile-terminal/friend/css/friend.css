@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.weui-cell {
+    height: 50px;
+    line-height: 50px;
+}
+
+.friend-sort {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    height: 73px;
+    line-height: 75px;
+    text-align: center;
+    font-size: 22px;
+    color: rgb(252, 183, 72);
+}
+
+#friend-content {
+    z-index: 1;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.unread {
+    width: 17px;
+    height: 17px;
+    border-radius: 17px;
+    background: red;
+    position: absolute;
+    top: 5px;
+    left: 36px;
+    border: 0;
+    color: #FFF;
+    font-size: 10px;
+    line-height: 17px;
+    text-align: center;
+    display: none;
+}
+
+#friend-information-div {
+    z-index: 3;
+    position: absolute;
+    left: 102%;
+    opacity: 0;
+    background: #e8e8e8;
+    display: none;
+    margin-top: 150px !important;
+    
+}
+
+.friend-information-head {
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    background: #e8e8e8;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+}
+
+.friend-information-headpic {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgb(252, 183, 72);
+    border-radius: 50px;
+    position: relative;
+    top: 50%;
+    margin-top: -30px;
+}
+
+.friend-information-back {
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    position: fixed;
+    top: 5px;
+}
+
+.friend-information-content {
+    position: relative;    
+}
+
+.friend-information-sex {
+    width: 20px;
+    height: 20px;
+}
+
+.weui-btn_primary,
+.weui-btn_primary:hover,
+.weui-btn_primary:after,
+.weui-btn_primary:visited,
+.weui-btn_primary:link {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#send-msg-button {
+    position: relative;
+    top: 20px;
+    background-color: rgb(252, 183, 72) !important;
+    width: 90%;
+}
+
+.weui-btn_default,
+.weui-btn_default:hover,
+.weui-btn_default:after,
+.weui-btn_default:visited,
+.weui-btn_default:link {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.weui-btn_default {
+    position: relative;
+    top: 20px;
+    width: 90%;
+}
+
+#friend-content {
+    margin-top: 73px !important;
+}
+
+/* 
+a{
+    color: #df4f4f
+} */

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.ChattingRecordDao">
+
+    <insert id="saveChattingRecord" parameterType="ChattingRecordDO">
+        insert into chatting_record(sender, receiver, type, content,status)
+        VALUES
+        (#{sender}, #{receiver}, #{type}, #{content},#{status})
+    </insert>
+    <select id="listUnreadChattingRecord" resultType="ChattingRecordDO">
+        SELECT id,sender,receiver,type,content,status,createtime,remark from chatting_record WHERE
+         ((sender=#{sender} and receiver=#{receiver}) or (sender=#{receiver} and receiver=#{sender})) and status=0 order by createtime desc,id desc
+    </select>
+    <select id="listChattingRecord" resultType="ChattingRecordDO">
+        SELECT chatting_record.id,sender,u1.name as senderName,receiver,u2.name as receiverName,chatting_record.type,content,status,chatting_record.createtime,chatting_record.remark from chatting_record,user as u1,user as u2 WHERE
+        u1.id=sender and u2.id = receiver and
+        ((sender=#{uid1} and receiver=#{uid2}) or (sender=#{uid2} and receiver=#{uid1})) order by createtime desc,id desc
+    </select>
+    <select id="listReadChattingRecord" resultType="ChattingRecordDO">
+        SELECT id,sender,receiver,type,content,status,createtime,remark from chatting_record WHERE
+        (sender=#{uid1} and receiver=#{uid2} and status=1) or (sender=#{uid2} and receiver=#{uid1} and status=1) order by createtime desc,id desc
+    </select>
+    <update id="updateChattingRecordStatus">
+        UPDATE chatting_record set status = 1 where sender=#{sender} and receiver=#{receiver}
+    </update>
+</mapper>
+
+
+
+

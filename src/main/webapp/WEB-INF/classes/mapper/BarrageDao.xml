@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.BarrageDao">
+    <insert id="saveBarrage" parameterType="BarrageDO">
+        insert into barrage(aid,sender,type,content,remark)
+        VALUES
+        (#{aid},#{sender},#{type},#{content},#{remark})
+    </insert>
+    <select id="listBarrageDTOByAid" resultType="com.yuan.dto.BarrageDTO">
+        SELECT barrage.id,user.name as sender,barrage.type,content,barrage.createtime,barrage.remark FROM barrage,user where barrage.sender=user.id
+        and barrage.aid=#{aid}
+    </select>
+</mapper>

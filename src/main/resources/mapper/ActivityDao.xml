@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yuan.dao.ActivityDao">
+
+    <insert id="saveActivity" parameterType="ActivityDO">
+        insert into
+        activity(name,intro,typeid,uid,pic,area,starttime,endtime,site,max,password,status,secretkey,coords,remark)
+        VALUES
+        (#{name},#{intro},#{typeid},#{uid},#{pic},#{area},#{starttime},#{endtime},#{site},#{max},#{password},#{status},#{secretkey},#{coords},#{remark})
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <select id="listActivityDO" resultType="ActivityDO">
+        SELECT activity.id,activity.name,intro,typeid,activity_type.name as
+        typename,uid,pic,area,starttime,endtime,site,max,password,status,secretkey,coords,activity.remark
+        FROM activity,activity_type where activity.typeid = activity_type.id
+        <if test="map.id!=null">and activity.id=#{map.id}</if>
+        <if test="map.typeid!=null">and typeid=#{map.typeid}</if>
+        <if test="map.status!=null">and status=#{map.status}</if>
+    </select>
+
+    <delete id="deleteActivity">
+        delete from activity where id=#{id}
+    </delete>
+
+
+    <update id="updateActivity" parameterType="ActivityDO">
+        update activity set name=#{name},intro=#{intro},area=#{area},
+        starttime=#{starttime},endtime=#{endtime},max=#{max},remark=#{remark}
+        <if test="typeid!=null">, typeid=#{typeid}</if>
+        <if test="pic!=null">, pic=#{pic}</if>
+        <if test="site!=null">, site=#{site}</if>
+        <if test="password!=null">, password=#{password}</if>
+        where id=#{id}
+    </update>
+
+
+    <select id="listActivityDTO" resultType="com.yuan.dto.ActivityDTO">
+        SELECT activity.id,activity.name,intro,activity_type.name as
+        type_name,pic,activity.area,starttime,endtime,site,max,status
+        FROM activity,activity_type where activity.typeid = activity_type.id
+        <if test="map.id!=null">and activity.id=#{map.id}</if>
+        <if test="map.typeid!=null">and activity.typeid=#{map.typeid}</if>
+        <if test="map.uid!=null">and activity.uid=#{map.uid}</if>
+        ORDER BY status,starttime
+    </select>
+
+    <select id="listRecommendActivity" resultType="com.yuan.dto.ActivityDTO">
+        select activity.id,activity.name,intro,activity_type.name,pic,area,starttime,endtime,site,max,status
+         FROM activity,user_interest,activity_type where user_interest.uid = #{uid} and
+         user_interest.typeid = activity_type.id and activity.typeid = user_interest.typeid
+         ORDER BY status,starttime
+    </select>
+
+    <select id="listStartActivity" resultType="Integer">
+        SELECT id FROM activity where status=1 and now()>=starttime
+    </select>
+
+    <update id="updateStatus">
+        update activity set status=#{1}
+        where id=#{0}
+    </update>
+
+    <select id="listEndActivity" resultType="Integer">
+        SELECT id FROM activity where status=0 and now()>=endtime
+    </select>
+
+    <select id="searchActivity" resultType="com.yuan.dto.ActivityDTO">
+        SELECT activity.id,activity.name,intro,activity_type.name as type_name,pic,area,starttime,endtime,site,max,status
+        FROM activity,activity_type where activity.typeid = activity_type.id
+        and activity.name like "%"#{wd}"%" or (length(#{wd})>4 and concat(activity.id,'') like #{wd}"%")
+        ORDER BY status,starttime
+    </select>
+
+    <select id="getActivityDetail" resultType="com.yuan.dto.ActivityDetailDTO">
+        SELECT activity.id,activity.name,intro ,uid,activity.typeid,user.name as creater,activity_type.name as type_name,pic,activity.area,
+        secretkey,starttime,endtime,site,max,status
+        FROM activity,activity_type,user where activity.typeid = activity_type.id
+        and activity.uid=user.id and activity.id=#{aid}
+    </select>
+
+    <update id="updateActivitySecretkey">
+        update activity set secretkey=#{secretkey}
+        where id=#{aid}
+    </update>
+
+    <update id="updateActivityCoords">
+        update activity set coords=#{coords}
+        where id=#{aid}
+    </update>
+
+    <select id="listActivityBySubscrible" resultType="com.yuan.dto.ActivityDTO">
+        SELECT activity.id,activity.name,intro,activity_type.name as type_name,pic,activity.area,starttime,endtime,site,max,status
+        FROM activity,activity_type,subscrible where activity.typeid = activity_type.id and subscrible.aid=activity.id
+         and subscrible.uid=#{uid} and subscrible.valid=1
+        ORDER BY status,starttime
+    </select>
+
+    <select id="listActivityBySign" resultType="com.yuan.dto.ActivityDTO">
+        SELECT activity.id,activity.name,intro,activity_type.name as type_name,pic,activity.area,starttime,endtime,site,max,status
+        FROM activity,activity_type,sign where activity.typeid = activity_type.id and sign.aid=activity.id and sign.uid=#{uid}
+        ORDER BY status,starttime
+    </select>
+
+    <select id="getActivityDOBysecretkey" resultType="ActivityDO">
+        SELECT id,name,intro,typeid,uid,pic,area,starttime,endtime,site,max,password,status,secretkey,coords,remark
+         FROM activity where secretkey=#{secretkey}
+    </select>
+
+
+</mapper>

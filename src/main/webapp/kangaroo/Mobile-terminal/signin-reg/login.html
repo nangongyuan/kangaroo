@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/area.css">
+    <link rel="stylesheet" href="css/hobby.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+    <title>袋鼠互动平台登陆</title>
+</head>
+
+<body>
+    <div id="fullpage">
+
+        <div class="section" id="log">
+            <div class="slide">
+                <div class="container-fluid" id="slide0">
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-1 col-xs-10">
+                            <input type="text" id="user" placeholder="  手机号码/用户名" maxlength='20' style="background:rgba(0, 0, 0, 0);" required="required">
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-1 col-xs-10">
+                            <input type="password" id="password" maxlength='15' placeholder="  密码" style="background:rgba(0, 0, 0, 0);" required="required">
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-1 col-xs-10">
+                            <br>
+                            <button type="button" class="btn btn-primary btn-block" style="outline: none;background:rgba(104, 190, 247, 0.87);border:none;"
+                                id="Login-Button">登陆</button>
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-1 col-xs-10" style="text-align:center;">
+                            <font color="#fff" size="3">
+                                <a href="#re">注册新用户</a>&emsp;|&emsp;
+                                <a>忘记密码</a>
+                            </font>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section" id="registered">
+            <div class="slide">
+                <div class="login-Heading">
+                    <img src="img/back.png" onclick="back_icon()" id="back-icon">
+                    <span class="loginHeadingText">注册</span>
+                </div>
+
+                <div class="container-fluid" id="slide1">
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <input type="text" class="form-control" id="newusername" placeholder="*用户名2-20位不能为纯数字" style="background:rgb(255, 255, 255);">
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <input type="password" class="form-control" id="newpassword" placeholder="*密码 6-15位" style="background:rgb(255, 255, 255);"
+                                required="required">
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <input type="password" class="form-control" placeholder="*确认密码 与前一项相同" id="repassword" style="background:rgb(255, 255, 255);"
+                                required="required">
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <input type="number" class="form-control" id="newphone" placeholder="*手机号码，必须为11位数字" style="background:rgb(255, 255, 255);"
+                                required="required" maxlength='11'>
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-4">
+                            <input type="text" class="form-control" id="verification" placeholder="*验证码" style="background:rgb(255, 255, 255); " maxlength='4'
+                                required="required">
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="button" class="btn btn-primary btn-block" onclick="Countdown()" id="verification-Button" style="outline: none;background:rgb(252, 183, 72);border:0;"
+                                required="required">
+                                <span id="verification-Text">获取验证码</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <br>
+                            <button class="btn btn-primary btn-block" style="outline: none;background:rgb(252, 183, 72);border:0;" id="Re-Button">注册</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="perfect">
+            <div class="slide">
+                <div class="login-Heading">
+                    <span class="loginHeadingText">完善个人信息</span>
+                </div>
+
+                <span style="float:right">
+                    <div id="pass">跳过</div>
+                </span>
+
+                <div class="container-fluid" id="slide2">
+                    <div class="row row-magin-top">
+                        <div class="col-xs-offset-2 col-xs-8">
+                            <div class="my_box">
+                                <img src="" id="Avatar" onclick="showAvatarModel()" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-offset-2 col-xs-8" style="text-align:center" id="Per-User-Name">您未登录
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-14">
+                            <br>
+                            <button type="button" class="btn btn-block btn-default" style="outline:none;height:50px;border-radius:0;border:0;border-top:1px soild  rgb(233, 233, 233);background:rgb(255, 255, 255)"
+                                id="Per-Gender-Button">
+                                <span style="float:left;font-size:16px;">性别</span>
+                                <span style="float:right;font-size:16px;border:0;" id="Gender">男</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-14">
+                            <button type="button" class="btn btn-block btn-default" style="outline:none;height:50px;border-radius:0;border:0;border-top:1px soild  rgb(233, 233, 233);background:rgb(255, 255, 255)"
+                                id="Per-Area-Button">
+                                <span style="float:left;font-size:16px;">地区</span>
+                                <span style="float:right;font-size:16px;" id="Area"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-14">
+                            <div style="outline:none;height:335px;border-radius:0;border:0;text-align:left;border-top:1px soild  rgb(233, 233, 233);background:rgb(255, 255, 255)"
+                                id="Per-Hobby-Button">
+                                <span style="font-size:16px;position:relative;top:9px;left:12px;">添加兴趣</span>
+
+                                <div class="hobbise" id="J_List"></div>
+
+                                <script src="js/hobby.js"></script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-14">
+                            <button type="button" class="btn btn-primary btn-block" style="outline:none;border-radius:0;background:rgb(252, 183, 72);border:0;"
+                                id="Per-Button">确认</button>
+                        </div>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade myModal" id="Message-Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:270px">
+            <div class="modal-content">
+                <br>
+                <h4 class="modal-title" id="Message-Model-Title"></h4>
+                <div class="modal-body">
+                    <span id="error-Message"></span>
+                </div>
+                <div class="modal-footer" style="padding:0">
+                    <button class="btn btn-large btn-block btn-default" type="button" data-dismiss="modal" id="Message-Button" style="margin:0;border:0;">确定</button>
+                    <button class="btn btn-large btn-block btn-primary" type="button" data-dismiss="modal" id="Message-Perfect" style="display:block;margin:0;border:0;background:rgb(252, 183, 72);">前往完善信息</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+    <!-- 选择头像模态框（Modal） -->
+    <div class="modal fade myModal" id="AvatarModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+        style="border:0">
+        <div class="modal-dialog" style="width:254px">
+            <div class="modal-content" style="text-align:center">
+                <br>
+                <h4 class="modal-title">选择头像</h4>
+                <div class="modal-body">
+                    <span id="errorMessage"></span>
+                </div>
+                <div class="modal-footer " style="padding:0" id="Avatarbody">
+                    <ul>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                        <li>
+                            <img src="" />
+                        </li>
+                    </ul>
+
+                </div>
+                <form>
+                    <input type="file" name="chat_inputImage" accept="image/*" id="chat_inputImage" style="display:none" />
+                </form>
+
+                <button class="btn btn-large btn-block btn-default" type="button" id="AvatarupButton" style="margin:0;border:0;border-radius:0;border-top:1px solid rgba(211, 211, 211, 0.548)">上传自定义头像</button>
+                <button class="btn btn-large btn-block btn-primary" type="button" data-dismiss="modal" id="AvatarButton" style="margin:0;border:0;border-radius:0;background-color:rgb(252, 183, 72)">确定</button>
+                <button class="btn btn-large btn-block btn-default" type="button" data-dismiss="modal" id="AvatarPerfect" style="display:block;margin:0;border:0;border-radius:0">取消</button>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade myModal" id="Gender-Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:270px">
+            <div class="modal-content">
+                <br>
+                <h4 class="modal-title" id="Message-Model-Title">性别</h4>
+                <div class="modal-body">
+                    <span id="error-Message"></span>
+                </div>
+                <div class="modal-footer" style="padding:0">
+                    <button class="btn btn-large btn-block btn-default" type="button" data-dismiss="modal" id="Man-Button" style="margin:0;border:0;outline:none;height:40px;">男</button>
+                    <button class="btn btn-large btn-block btn-default" type="button" data-dismiss="modal" id="Woman-Button" style="margin:0;border:0;outline:none;height:40px;">女</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="loading">
+        <svg id="loader-1" width="60px" height="60px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;position:relative;top:50%;margin-top:-30px;display:none">
+            <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+                />
+            </path>
+        </svg>
+    </div>
+</body>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="../ip.js"></script>
+<script src="js/jquery.fullPage.js"></script>
+<script src="js/login.js"></script>
+<script src="js/area.js"></script>
+
+<script>
+    $(document).ready(function () {
+        setInterval(function () {
+            $("#loader-1").fadeIn(1000);
+        }, 1000)
+
+        setInterval(function () {
+            $(".loading").fadeOut(500);
+        }, 3000)
+    });
+</script>
+
+</html>
